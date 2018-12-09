@@ -1,0 +1,11 @@
+"main.obj",
+"ST7920.obj",
+"delay.obj",
+"DS1302.obj",
+"Interface.obj",
+"key.obj",
+"i2c.obj",
+"AM2320.obj",
+"18b20.obj" 
+TO "test" 
+RAMSIZE(256) 
