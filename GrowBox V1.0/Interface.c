@@ -120,36 +120,14 @@ void interface_display(int x)
 		break;	
 								
 /****************************灯泵模式设置选择界面*******************************************/		
-			 case  Lamp_Pump_Fan_Setting:
-				        DelayMs(20);
-			          switch(flag6)
-			          {   
-									     case 1:
-									          LCD_PutString(0,1,"LED Pump Fan Set");
-														LCD_PutString(0,2,"1.LED  Mode    *"); 
-														LCD_PutString(0,3,"2.Pump Mode     ");
-											      LCD_PutString(0,4,"3.Fan  Mode     ");
-											      
-											      break;
-											
-											 case 2:
-												    LCD_PutString(0,1,"LED Pump Fan Set");
-														LCD_PutString(0,2,"1.LED  Mode     "); 
-														LCD_PutString(0,3,"2.Pump Mode    *");
-											      LCD_PutString(0,4,"3.Fan  Mode     ");
-											      break;
-											
-											 case 3:
-												    LCD_PutString(0,1,"LED Pump Fan Set");
-														LCD_PutString(0,2,"1.LED  Mode     "); 
-														LCD_PutString(0,3,"2.Pump Mode     ");
-											      LCD_PutString(0,4,"3.Fan  Mode    *");
-											      break;
-												 
-
-
-                }
-			        break;
+	case  Lamp_Pump_Fan_Setting:
+		DelayMs(20);
+		LCD_PutString(0,1,"LED Pump Fan Set");
+		LCD_PutString(0,2,"LED  Mode"); 
+		LCD_PutString(0,3,"Pump Mode");
+		LCD_PutString(0,4,"Fan  Mode");
+		move_selection(flag6);
+		break;
 /******************************开始时间点设置界面***********************************/
 			case  AlarmSetInterface:  
 		          DelayMs(20);
@@ -225,79 +203,34 @@ void interface_display(int x)
 
 							 
 /**************************************进入灯模式选择界面**********************************/							 
-			 case  Lamp_Mode :
-				        DelayMs(20);
-			          switch(flag3)
-	             {
-	                case 1:   LCD_PutString(0,1,"LED Mode Select ");
-														LCD_PutString(0,2,"Mode1   12hr   *");
-														LCD_PutString(0,3,"Mode2   18hr    ");
-														LCD_PutString(0,4,"Mode3   24hr    ");
-														break;
-									case 2:   LCD_PutString(0,1,"LED Mode Select ");
-														LCD_PutString(0,2,"Mode1   12hr    ");
-														LCD_PutString(0,3,"Mode2   18hr   *");
-														LCD_PutString(0,4,"Mode3   24hr    ");
-														break;
-														
-		              case 3:   LCD_PutString(0,1,"LED Mode Select ");
-														LCD_PutString(0,2,"Mode1   12hr    ");
-														LCD_PutString(0,3,"Mode2   18hr    ");
-														LCD_PutString(0,4,"Mode3   24hr   *");
-														break;
-		           }
-							     break;
+	case  Lamp_Mode :
+		DelayMs(20);
+		LCD_PutString(0,1,"LED Mode Select ");
+		LCD_PutString(0,2,"Mode1   12hr");
+		LCD_PutString(0,3,"Mode2   18hr");
+		LCD_PutString(0,4,"Mode3   24hr");
+		move_selection(flag3);
+		break;
 /************************************进入泵模式选择界面************************************/
-							 
-				 case  Pump_Mode :
-				        DelayMs(20);
-			           	switch(flag4)
-	             {
-	                case 1:   LCD_PutString(0,1,"Pump Mode Select");
-														LCD_PutString(0,2,"Mode1   1X     *");
-														LCD_PutString(0,3,"Mode2   2X      ");
-														LCD_PutString(0,4,"Mode3   3X      ");
-														break;
-									case 2:   LCD_PutString(0,1,"Pump Mode Select");
-														LCD_PutString(0,2,"Mode1   1X      ");
-														LCD_PutString(0,3,"Mode2   2X     *");
-														LCD_PutString(0,4,"Mode3   3X      ");
-														break;
-														
-		              case 3:   LCD_PutString(0,1,"Pump Mode Select");
-														LCD_PutString(0,2,"Mode1   1X      ");
-														LCD_PutString(0,3,"Mode2   2X      ");
-														LCD_PutString(0,4,"Mode3   3X     *");
-														break;
-		           }
-			          
-									break;
+	case  Pump_Mode:
+		DelayMs(20);
+		LCD_PutString(0,1,"Pump Mode Select");
+		LCD_PutString(0,2,"Mode1   1X");
+		LCD_PutString(0,3,"Mode2   2X");
+		LCD_PutString(0,4,"Mode3   3X");
+		move_selection(flag4);
+		break;
 							 
 /************************************进入风扇模式选择界面************************************/
 							 
-				 case  Fan_Mode :
-				        DelayMs(20);
-			           	switch(flag7)
-	             {
-	                case 1:   LCD_PutString(0,1,"Fan Mode Select ");
-														LCD_PutString(0,2,"High           *");
-														LCD_PutString(0,3,"Medium          ");
-														LCD_PutString(0,4,"Low             ");
-														break;
-									case 2:   LCD_PutString(0,1,"Fan Mode Select ");
-														LCD_PutString(0,2,"High            ");
-														LCD_PutString(0,3,"Medium         *");
-														LCD_PutString(0,4,"Low             ");
-														break;
-														
-		              case 3:   LCD_PutString(0,1,"Fan Mode Select ");
-														LCD_PutString(0,2,"High            ");
-														LCD_PutString(0,3,"Medium          ");
-														LCD_PutString(0,4,"Low            *");
-														break;
-		           }
-			          
-									break;			 
+	case  Fan_Mode :
+		DelayMs(20);
+		LCD_PutString(0,1,"Fan Mode Select ");
+		LCD_PutString(0,2,"High");
+		LCD_PutString(0,3,"Medium");
+		LCD_PutString(0,4,"Low");
+		move_selection(flag7);
+		break;			 
 								
 
 	  }
