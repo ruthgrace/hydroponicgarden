@@ -109,6 +109,32 @@ int move_flag(int flag, int direction, int options)
 	return flag;
 }
 
+void up_down_press(int Interface, int direction)
+{
+	switch(Interface)
+	{
+		case Mainmenu:
+			flag1 = move_flag(flag1, direction, 3);
+			break;
+		case Pump_Mode:
+			flag4 = move_flag(flag4, direction, 3);
+			break;
+		case Lamp_Mode:
+			flag3 = move_flag(flag3, direction, 3);
+			Cflag3=1;
+			break;
+		case Date_Time_Setting:
+			flag1 = move_flag(flag1, direction, 2);
+		  break;
+		case Lamp_Pump_Fan_Setting:
+			flag6 = move_flag(flag6, direction, 3);
+			break;
+		case Fan_Mode:
+			flag7 = move_flag(flag7, direction, 3);
+			break;
+	}
+}
+
 void Keyprocessing(int x)   //按键值处理函数
 {
     switch(x)
@@ -262,134 +288,83 @@ void Keyprocessing(int x)   //按键值处理函数
 											
 		          break;
 /*************************************加键及移位键设置**********************************/							 
-		 case 2:   if(Interface==Mainmenu)//||Interface==Pump_Mode||Interface==Lamp_Mode)
-						   {
-								 flag1 = move_flag(flag1, x, 3);
-               }
-							 else if(Interface==Pump_Mode)
-							 {
-									flag4++;
-								  if(flag4>3)
-									 flag4=1;
-												
-               }
-							 else if(Interface==Lamp_Mode)
-							 {
-									flag3++;
-								  if(flag3>3)
-									 flag3=1;
-									
-									Cflag3=1;
-											
-               }
-							
-							 else if(Interface==Date_Time_Setting)
-		          {
-								 flag1++;
-								 if(flag1>2)
-								 {
-									 flag1=1;
-								 }
-              }
-							else if(Interface==Lamp_Pump_Fan_Setting)
-							{
-								  flag6++;
-								  if(flag6>3)
-									{
-									 flag6=1;
-									}
-									
-              }
-							 else if(Interface==Fan_Mode)
-							{
-									flag7++;
-								  if(flag7==4)
-									flag7=1;
-              }
+		 case 2:
+			 switch(Interface)
+			 {
+				 case DateSetInterface:
+					 switch(flag2)
+					 {
+							case 1:   if(time_buf1[1]<0)
+												 time_buf1[1]=95;
+												else time_buf1[1]--;
+													
+												break;
+							case 2:   time_buf1[2]--;
+												if(time_buf1[2]<1)
+													time_buf1[2]=12;
+												break;
+							case 3:  if(time_buf1[3]>=1)
+											 time_buf1[3]--;
+											 if(time_buf1[3]<1)
+												{
+													if((time_buf1[2]==1)||(time_buf1[2]==3)||(time_buf1[2]==5)||(time_buf1[2]==7)||(time_buf1[2]==8)||(time_buf1[2]==10)||(time_buf1[2]==12))
+														time_buf1[3]=31;
+													if((time_buf1[2]==4)||(time_buf1[2]==6)||(time_buf1[2]==9)||(time_buf1[2]==11))
+														time_buf1[3]=30;
+													if(time_buf1[2]==2)
+													{
+															year=2000+time_buf1[1];
+															
+															if(year%4==0&&year%100!=0||year%400==0) //闰年
+															{
+																	time_buf1[3]=29;
+															}
+															else time_buf1[3]=28;
+													}
+												}
+												break;
+					 }
+					 time_buf1[7]= Get_Day(time_buf1[1],time_buf1[2],time_buf1[3]);
+						Ds1302_Write_Time();
+				   break;
+         case TimeSetInterface:
+					 switch(flag8)
+				 {
+						case 1:   if(time_buf1[4]==0)
+												time_buf1[4]=23; 
+											else time_buf1[4]--;
+											CTimeflag=1;
+											break;
+						case 2:  
+											if(time_buf1[5]==0)
+												time_buf1[5]=59;
+											else time_buf1[5]--;
+											CTimeflag=1;
+											break;
 
-							else if(Interface==DateSetInterface)
-							{  
-									 switch(flag2)
-									 {
-											case 1:   if(time_buf1[1]<0)
-												         time_buf1[1]=95;
-        												else time_buf1[1]--;
-										            	
-																break;
-											case 2:   time_buf1[2]--;
-										            if(time_buf1[2]<1)
-																	time_buf1[2]=12;
-																break;
-											case 3:  if(time_buf1[3]>=1)
-												       time_buf1[3]--;
-												       if(time_buf1[3]<1)
-																{
-																	if((time_buf1[2]==1)||(time_buf1[2]==3)||(time_buf1[2]==5)||(time_buf1[2]==7)||(time_buf1[2]==8)||(time_buf1[2]==10)||(time_buf1[2]==12))
-																		time_buf1[3]=31;
-																	if((time_buf1[2]==4)||(time_buf1[2]==6)||(time_buf1[2]==9)||(time_buf1[2]==11))
-																		time_buf1[3]=30;
-																	if(time_buf1[2]==2)
-																	{
-																			year=2000+time_buf1[1];
-																			
-																			if(year%4==0&&year%100!=0||year%400==0) //闰年
-																			{
-																					time_buf1[3]=29;
-																			}
-																			else time_buf1[3]=28;
-																	}
-																}
-																break;
-									 }
-									 time_buf1[7]= Get_Day(time_buf1[1],time_buf1[2],time_buf1[3]);
-										Ds1302_Write_Time();
-									  
-							}
-
-							else if(Interface==TimeSetInterface)
-							{
-										   switch(flag8)
-										 {
-												case 1:   if(time_buf1[4]==0)
-																		time_buf1[4]=23; 
-												          else time_buf1[4]--;
-												          CTimeflag=1;
-																	break;
-												case 2:  
-																	if(time_buf1[5]==0)
-																		time_buf1[5]=59;
-													        else time_buf1[5]--;
-																	CTimeflag=1;
-																	break;
-
-										 }
-										 Ds1302_Write_Time();
-																					
-              }
-								
-
-							else if(Interface==AlarmSetInterface)
-							{								
-											switch(flag5)
-											{
-													case 1:  if(Alarm[0]==0)
-																		Alarm[0]=23;
-														        else Alarm[0]--; 
-																		break;
-													case 2:   if(Alarm[1]==0)
-																		Alarm[1]=59;
-													          else Alarm[1]--;
-																		break;	
-												
-																		
-											}
-									
-
-									ISendStr(0xae,80,&Alarm[0],1); //写入24c02
-									ISendStr(0xae,81,&Alarm[1],1); //写入24c02
-						 }						
-
-                    break;
+					 }
+					 Ds1302_Write_Time();
+					 break;
+			   case AlarmSetInterface:
+					switch(flag5)
+					{
+							case 1:  if(Alarm[0]==0)
+												Alarm[0]=23;
+												else Alarm[0]--; 
+												break;
+							case 2:   if(Alarm[1]==0)
+												Alarm[1]=59;
+												else Alarm[1]--;
+												break;	
+					}
+						ISendStr(0xae,80,&Alarm[0],1); //写入24c02
+						ISendStr(0xae,81,&Alarm[1],1); //写入24c02
+				   break;
+				 default:
+					 up_down_press(Interface, x);
+					 break;
+		 }
+		 break;
 							        
 /*************************************减键及移位键设置**********************************/							 						
 		 case 3:  if(Interface==Mainmenu) //||Interface==Pump_Mode||Interface==Mainmenu)
@@ -398,43 +373,26 @@ void Keyprocessing(int x)   //按键值处理函数
               }
 							 else if(Interface==Pump_Mode)
 							{
-									flag4--;
-								  if(flag4<1)
-									 flag4=3;
-									
+								flag4 = move_flag(flag4, x, 3);									
               }
 							 else if(Interface==Lamp_Mode)
 							{
-									flag3--;
-								  if(flag3<1)
-									 flag3=3;
-									
-									 Cflag3=1;
+								flag3 = move_flag(flag3, x, 3);
+								Cflag3=1;
               }
 							
 							else if(Interface==Lamp_Pump_Fan_Setting)
 							{
-									 flag6--;
-								   if(flag6<1)
-									 {
-										 flag6=3;
-									 }
+								flag6 = move_flag(flag6, x, 3);
               }
 							 else if(Interface==Fan_Mode)
 							{
-								  flag7--;
-								  if(flag7==0)
-									 flag7=3;
+								flag7 = move_flag(flag7, x, 3);
               }
 							
 							else if(Interface==Date_Time_Setting)
 		          {
-								 flag1--;
-								 if(flag1<1)
-								 {
-									 flag1=2;
-								 }
-								 
+								flag1 = move_flag(flag1, x, 2);
               }
 							
 
