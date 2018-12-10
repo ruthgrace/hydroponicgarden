@@ -27,7 +27,25 @@ unsigned int   flag8=1; // 当前时间设置标志
 
 extern unsigned char Alarmflag; //闹钟报警标志
 extern unsigned char Alarmswitch;
- 
+
+void move_selection(int flag)
+{
+	switch(flag)
+	{
+	  case 1:   LCD_PutString(7,2," *");
+		        	LCD_PutString(7,3,"  ");
+							LCD_PutString(7,4,"  "); 
+							break;
+	  case 2:   LCD_PutString(7,2,"  ");
+							LCD_PutString(7,3," *");
+							LCD_PutString(7,4,"  "); 
+							break;
+	  case 3:   LCD_PutString(7,2,"  ");
+							LCD_PutString(7,3,"  ");
+							LCD_PutString(7,4," *"); 
+							break;
+  }
+}
 
 void interface_display(int x) 
 {
@@ -86,27 +104,11 @@ void interface_display(int x)
 	case  Mainmenu:  
 		 DelayMs(20);
 		 LCD_PutString(0,1,"   Main Menu    ");
-		 LCD_PutString(0,2,"1.Date/Time Set");
-	   LCD_PutString(0,3,"2.Schedule");
-	   LCD_PutString(0,4,"3.LED/Pump/Fan");
-							switch(flag1)
-	             {
-	                case 1:   LCD_PutString(7,2,"t*");
-														LCD_PutString(7,3,"  ");
-								            LCD_PutString(7,4,"  "); 
-														break;
-	                case 2:   LCD_PutString(7,2,"t ");
-														LCD_PutString(7,3," *");
-								            LCD_PutString(7,4,"  "); 
-														break;
-	                case 3:   LCD_PutString(7,2,"t ");
-														LCD_PutString(7,3,"  ");
-								            LCD_PutString(7,4," *"); 
-														break;
-		           }
-				  
-				 
-		          break;
+		 LCD_PutString(0,2,"Date/Time Set");
+	   LCD_PutString(0,3,"Schedulea");
+	   LCD_PutString(0,4,"LED/Pump/Fan");
+		 move_selection(flag1);
+		 break;
 /****************************时间日期设置选择显示界面*********************************/
 		case  Date_Time_Setting:
 				     DelayMs(20);
