@@ -83,27 +83,26 @@ void interface_display(int x)
 
 								break;
 /**********************************主菜单界面显示********************************/        
-		 case  Mainmenu:  
-		          DelayMs(20);
+	case  Mainmenu:  
+		 DelayMs(20);
+		 LCD_PutString(0,1,"   Main Menu    ");
+		 LCD_PutString(0,2,"1.Date/Time Set");
+	   LCD_PutString(0,3,"2.Schedule");
+	   LCD_PutString(0,4,"3.LED/Pump/Fan");
 							switch(flag1)
 	             {
-	                case 1:   LCD_PutString(0,1,"   Main Menu    ");
-														LCD_PutString(0,2,"1.Date/Time Set*");
-														LCD_PutString(0,3,"2.Schedule      ");
-								            LCD_PutString(0,4,"3.LED/Pump/Fan  "); 
-								              
+	                case 1:   LCD_PutString(7,2,"t*");
+														LCD_PutString(7,3,"  ");
+								            LCD_PutString(7,4,"  "); 
 														break;
-									case 2:   LCD_PutString(0,1,"    Main Menu   ");
-														LCD_PutString(0,2,"1.Date/Time Set ");
-														LCD_PutString(0,3,"2.Schedule     *");
-								            LCD_PutString(0,4,"3.LED/Pump/Fan  ");
-											
+	                case 2:   LCD_PutString(7,2,"t ");
+														LCD_PutString(7,3," *");
+								            LCD_PutString(7,4,"  "); 
 														break;
-		              case 3:   LCD_PutString(0,1,"    Main Menu   ");
-														LCD_PutString(0,2,"1.Date/Time Set ");
-														LCD_PutString(0,3,"2.Schedule      ");
-								            LCD_PutString(0,4,"3.LED/Pump/Fan *");
-		                        break;
+	                case 3:   LCD_PutString(7,2,"t ");
+														LCD_PutString(7,3,"  ");
+								            LCD_PutString(7,4," *"); 
+														break;
 		           }
 				  
 				 
