@@ -86,6 +86,29 @@ unsigned char KeyScan(void)
 
 }
 
+//later, use the interface to determine the flag
+int move_flag(int flag, int direction, int options)
+{
+	switch(direction)
+	{
+		case 2: // up
+			flag++;
+		  if (flag > options)
+			{
+				flag = 1;
+			}
+			break;
+		case 3: //down
+			flag--;
+		  if (flag < 1)
+			{
+				flag = options;
+			}
+			break;
+	}
+	return flag;
+}
+
 void Keyprocessing(int x)   //按键值处理函数
 {
     switch(x)
@@ -241,12 +264,7 @@ void Keyprocessing(int x)   //按键值处理函数
 /*************************************加键及移位键设置**********************************/							 
 		 case 2:   if(Interface==Mainmenu)//||Interface==Pump_Mode||Interface==Lamp_Mode)
 						   {
-								 flag1++;
-								 if(flag1>3)
-								 {
-											flag1=1;
-//											Interface=MainInterface;
-								 }
+								 flag1 = move_flag(flag1, x, 3);
                }
 							 else if(Interface==Pump_Mode)
 							 {
@@ -376,12 +394,7 @@ void Keyprocessing(int x)   //按键值处理函数
 /*************************************减键及移位键设置**********************************/							 						
 		 case 3:  if(Interface==Mainmenu) //||Interface==Pump_Mode||Interface==Mainmenu)
 							{
-								 flag1--;
-								 if(flag1<1)
-								 {
-									 flag1=3;
-								 }
-
+								flag1 = move_flag(flag1, x, 3);
               }
 							 else if(Interface==Pump_Mode)
 							{
