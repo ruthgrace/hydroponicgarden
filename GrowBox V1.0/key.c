@@ -271,7 +271,6 @@ void Keyprocessing(int x)   //按键值处理函数
 								 if(flag1>2)
 								 {
 									 flag1=1;
-									 Interface=Mainmenu;
 								 }
               }
 							else if(Interface==Lamp_Pump_Fan_Setting)
@@ -423,7 +422,6 @@ void Keyprocessing(int x)   //按键值处理函数
 								 if(flag1<1)
 								 {
 									 flag1=2;
-									 Interface=Mainmenu;
 								 }
 								 
               }

@@ -102,32 +102,22 @@ void interface_display(int x)
 								break;
 /**********************************主菜单界面显示********************************/        
 	case  Mainmenu:  
-		 DelayMs(20);
-		 LCD_PutString(0,1,"   Main Menu    ");
-		 LCD_PutString(0,2,"Date/Time Set");
-	   LCD_PutString(0,3,"Schedulea");
-	   LCD_PutString(0,4,"LED/Pump/Fan");
-		 move_selection(flag1);
-		 break;
+		DelayMs(20);
+		LCD_PutString(0,1,"   Main Menu    ");
+		LCD_PutString(0,2,"Date/Time Set");
+	  LCD_PutString(0,3,"Schedule");
+	  LCD_PutString(0,4,"LED/Pump/Fan");
+		move_selection(flag1);
+		break;
 /****************************时间日期设置选择显示界面*********************************/
-		case  Date_Time_Setting:
-				     DelayMs(20);
-			          switch(flag1)
-			          {   
-									     case 1:
-									          LCD_PutString(0,1," Date Time Set  ");
-														LCD_PutString(0,2,"1.Date Setting *"); 
-														LCD_PutString(0,3,"2.Time Setting  ");
-											      break;
-											
-											 case 2:
-												    LCD_PutString(0,1," Date Time Set  ");
-														LCD_PutString(0,2,"1.Date Setting  "); 
-														LCD_PutString(0,3,"2.Time Setting *");
-											      break;
-											
-                }
-								break;	
+	case  Date_Time_Setting:
+		DelayMs(20);
+		LCD_PutString(0,1," Date Time Set  ");
+		LCD_PutString(0,2,"Date Setting");
+		LCD_PutString(0,3,"Time Setting");
+		LCD_PutString(0,4," ");	
+	  move_selection(flag1);
+		break;	
 								
 /****************************灯泵模式设置选择界面*******************************************/		
 			 case  Lamp_Pump_Fan_Setting:
