@@ -857,7 +857,6 @@ void Sys_Start_Modechage()
 
 void Pump_Modechange()
 {
-#if 0
 	 
     
 	   IRcvStr(0xae,210, &flag3,1);            //24c02¶Á³öÊý¾Ý
@@ -1763,6 +1762,5 @@ void Pump_Modechange()
          }
 				 
 		  }
-#endif
 }
 
