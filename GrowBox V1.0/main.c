@@ -779,6 +779,60 @@ void Timer1_isr(void) interrupt 3 using 1
     TR1 = 1;
 }
 
+int mod_24(int x)
+{
+	return x - (x / 24) * 24;
+}
+
+int get_led_end_hour(int start_time, int led_mode)
+{
+	int led_time;
+	switch(led_mode)
+	{
+		case 1:
+			led_time = 12;
+		  break;
+		case 2:
+			led_time = 18;
+		  break;
+		default:
+			led_time = 24;
+	}
+  return mod_24(start_time + led_time);
+}
+
+int led_state(int start_hour, int end_hour, int minute, int current_hour, int current_minute)
+{
+	if (current_hour == start_hour)
+	{
+    if (current_minute >= minute)
+			return 1;
+		else
+			return 0;
+	}
+	if (current_hour == end_hour)
+	{
+    if (current_minute < minute)
+			return 1;
+		else
+			return 0;
+	}
+	if (end_hour > start_hour)
+	{
+    if ((current_hour > start_hour) && (current_hour < end_hour))
+			return 1;
+		else
+			return 0;
+	}
+	else
+	{
+		if ((current_hour > start_hour) || (current_hour < end_hour))
+			return 1;
+		else
+			return 0;
+	}
+}
+
 //系统时间改变开始时间LED模式改变计算LED的当前状态
 void Sys_Start_Modechage()
 {
@@ -938,7 +992,14 @@ void Sys_Start_Modechage()
          }
 				 else if(Alarm[0]==9)
 				 {
-						if((9<time_buf1[4])&&(time_buf1[4]<21)||
+					 int led_start_hour = Alarm[0];
+					 int led_end_hour = get_led_end_hour(led_start_hour, flag3);
+					 int led_minute = Alarm[1];
+					 int current_hour = time_buf1[4];
+					 int current_minute = time_buf1[5];
+					 Lamp_flag1 = led_state(led_start_hour, led_end_hour, led_minute, current_hour, current_minute);
+					 
+/*						if((9<time_buf1[4])&&(time_buf1[4]<21)||
 							(9==time_buf1[4])&&(time_buf1[5]>=Alarm[1])||
 						  (time_buf1[4]==21)&&(time_buf1[5]<Alarm[3]))
 						{
@@ -950,7 +1011,7 @@ void Sys_Start_Modechage()
 						  (time_buf1[4]==9)&&(time_buf1[5]<Alarm[1])||
      					(0<time_buf1[4])&&(time_buf1[4]<9))
 							  
-						   Lamp_flag1=0;
+						   Lamp_flag1=0; */
 
          }
 				 else if(Alarm[0]==10)
