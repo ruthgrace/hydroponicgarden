@@ -854,6 +854,72 @@ void Sys_Start_Modechage()
 	}
 }
 
+int is_pumping_time(int pump_start_hour, int pump_end_hour, int pump_start_minute, int pump_end_minute, int current_hour, int current_minute)
+{
+	if ((current_hour != pump_start_hour) && (current_hour != pump_end_hour))
+		return 0;
+	if ((pump_start_hour == pump_end_hour) && (current_minute >= pump_start_minute) && (current_minute < pump_end_minute))
+		return 1;
+	if (current_hour == pump_start_hour)
+	{
+		if (current_minute >= pump_start_minute)
+			return 1;
+		else
+			return 0;
+	}
+	if (current_hour == pump_end_hour)
+	{
+		if (current_minute < pump_end_minute)
+			return 1;
+		else
+			return 0;
+	}
+	return 0;
+}
+
+int pump1_state(int led_mode, int pump_mode, int led_start_hour, int led_start_minute, int current_hour, int current_minute)
+{
+	int led_hours;
+	int pump_interval;
+	int hour_increment = 1;
+	int pump_session;
+	switch(led_mode)
+	{
+		case 1:
+			led_hours = 12;
+		  break;
+		case 2:
+			led_hours = 18;
+		  break;
+		default:
+			led_hours = 24;
+	}
+	
+	switch(pump_mode)
+	{
+		case 1:
+			pump_interval = 24;
+		  break;
+		case 2:
+			pump_interval = led_hours / 2;
+		  break;
+		default:
+			pump_interval = led_hours / 3;
+		  break;
+	}
+	for(pump_session = 0; pump_session < pump_mode; pump_session++)
+	{
+		int pump_start_hour = mod_24(led_start_hour + hour_increment);
+		int pump_end_hour = pump_start_hour;
+		int pump_start_minute = 0;
+		int pump_end_minute = 15;
+		if (is_pumping_time(pump_start_hour, pump_end_hour, pump_start_minute, pump_end_minute, current_hour, current_minute))
+			return 1;
+		hour_increment = mod_24(hour_increment + pump_interval);
+	}
+	return 0;
+}
+
 
 void Pump_Modechange()
 {
@@ -861,11 +927,19 @@ void Pump_Modechange()
     
 	   IRcvStr(0xae,210, &flag3,1);            //24c02读出数据
 		 IRcvStr(0xae,211, &flag4,1); 
+		 IRcvStr(0xae,80,&Alarm[0],1);         //从24c02读出数据 
+		 IRcvStr(0xae,81,&Alarm[1],1);
+
 	   Pum_Mode();
 	//12hour  X1
 	   if((flag3==1)&&(flag4==1))
 			{
-         if((time_buf1[4]==Alarm_Pour1[0])&&(0<=time_buf1[5])&&(time_buf1[5]<15))
+				int led_start_hour = Alarm[0];
+				int led_start_minute = Alarm[1];
+				int current_hour = time_buf1[4];
+				int current_minute = time_buf1[5];
+				Pump1_flag = pump1_state(flag3, flag4, led_start_hour, led_start_minute, current_hour, current_minute);
+ /*        if((time_buf1[4]==Alarm_Pour1[0])&&(0<=time_buf1[5])&&(time_buf1[5]<15))
 				 {
 						Pump1_flag=1;
 					 
@@ -874,7 +948,7 @@ void Pump_Modechange()
 					   (time_buf1[4]<Alarm_Pour1[0])||(time_buf1[4]>Alarm_Pour1[2]))
 				 {
 						Pump1_flag=0;
-         }
+         }*/
 				 
       }
 	//18hour  X1		
