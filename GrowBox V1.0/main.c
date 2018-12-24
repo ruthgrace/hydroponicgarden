@@ -854,6 +854,19 @@ void Sys_Start_Modechage()
 	}
 }
 
+int time_plus_pump_time_hour(int start_hour, int start_minute, int pump_minutes) {
+	int end_minute = start_minute + pump_minutes;
+	if (end_minute >= 60)
+		return mod_24(start_hour + end_minute/60);
+	else
+		return start_hour;
+}
+
+int time_plus_pump_time_minute(int start_minute, int pump_minutes) {
+	int end_minute = start_minute + pump_minutes;
+	return end_minute - (end_minute/60)*60;
+}
+
 int is_pumping_time(int pump_start_hour, int pump_end_hour, int pump_start_minute, int pump_end_minute, int current_hour, int current_minute)
 {
 	if ((current_hour != pump_start_hour) && (current_hour != pump_end_hour))
@@ -914,10 +927,14 @@ int pump1_state(int led_mode, int pump_mode, int led_start_hour, int led_start_m
 	for(pump_session = 0; pump_session < pump_mode; pump_session++)
 	{
 		int pump_start_hour = mod_24(led_start_hour + hour_increment);
-		int pump_end_hour = pump_start_hour;
 		int pump_start_minute = led_start_minute;
-		int pump_end_minute = 15;
+		int pump_end_hour = time_plus_pump_time_hour(pump_start_hour, pump_start_minute, 15);
+		int pump_end_minute = time_plus_pump_time_minute(pump_start_minute, 15);
+		// delete the next three lines if you want the pump to start an hour after the LEDs
+		//  instead of the next round hour after the LEDs
+		pump_end_hour = pump_start_hour;
     pump_start_minute = 0;
+		pump_end_minute = 15;
 		if (is_pumping_time(pump_start_hour, pump_end_hour, pump_start_minute, pump_end_minute, current_hour, current_minute))
 			return 1;
 		hour_increment = mod_24(hour_increment + pump_interval);
