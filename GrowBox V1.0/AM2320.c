@@ -57,19 +57,7 @@ void Clear_Data (void)
 }
 
 void UART_PutStringAndNum(unsigned int num,unsigned int num1)
-  {
-		if ( num < 0 || num > 1000 || num1 < 0 || num1 > 1760 ) {
-			a[3] = '-';
-			a[2] = '.';
-			a[1] = '-';
-			a[0] = '-';
-			b[3] = '-';
-			b[2] = '.';
-			b[1] = '-';
-			b[0] = '-';
-		}
-		else {
-			
+  {	
 //		unsigned char i;
 			a[3] = '0'+num%10;
 			a[2] = '.';
@@ -80,8 +68,6 @@ void UART_PutStringAndNum(unsigned int num,unsigned int num1)
 			b[2] = '.';
 			b[1] = '0'+num1/10%10;
 			b[0] = '0'+num1/100%10;
-		}		
-
   }  
 
 /********************************************\

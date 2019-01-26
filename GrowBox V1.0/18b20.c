@@ -112,22 +112,10 @@ void tempdat()
 	  
 	 tempchang();
    f=ReadTemperature();
-	 
-	 if ( f < 0 || f > 125 ) {
-		 t[0] = '-';
-		 DelayUs2x(25);
-		 t[1] = '-';
-		 DelayUs2x(25);
-		 t[2] = '.';
-		 DelayUs2x(25);
-		 t[3] = '-';
-		 DelayUs2x(25);
-	 }
-	 else {	
 		 a=(1.8*f+320);
-		 b=a/100;
-		 c=a%100/10;
-		 d=a%100%10;
+		 b=(a/100)%10;
+		 c=(a/10)%10;
+		 d=a%10;
 
 		 t[0]=table[b]; 
 		 DelayUs2x(25);
@@ -137,5 +125,4 @@ void tempdat()
 		 DelayUs2x(25);
 		 t[3]=table[d];
 		 DelayUs2x(25);
-	 }
 }
