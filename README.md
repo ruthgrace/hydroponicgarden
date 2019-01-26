@@ -34,6 +34,8 @@ The hardware should start buzzing. Press the power button for 1 second (until it
 
 The hardware I have has 2 PCBs, one is for the top of the Growbox and includes the LCD display, buttons, and a big black relay hanging off some wires that represent the LEDs. There is a long thick cord connecting that to a second PCB for the bottom of the Growbox, which has the float switches and lights which represent the pumps (they turn on when the firmware tells the pump to turn on). There is also a power supply.
 
+The LCD powers on or off if you press the power button for 3 seconds.
+
 ### Troubleshooting development setup
 
 Always double check all electronic connections.
