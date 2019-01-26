@@ -16,6 +16,8 @@ Follow the first 90 seconds of this video to figure out how to add the STC micro
 
 Make sure the STC-ISP settings look like this:
 
+![STC-ISP software settings](https://github.com/ruthgrace/growbox/blob/master/stc-isp-settings.PNG)
+
 ### Development workflow
 
 Open the `test.uvproj` file using Keil uVision5.
