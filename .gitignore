@@ -1,0 +1,11 @@
+*.LST
+*.OBJ
+*.swp
+*.hex
+*.M51
+*.build_log.htm
+*.lnp
+*.plg
+*.bak
+test.uvgui.*
+test.uvopt
