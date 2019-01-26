@@ -113,7 +113,7 @@ void tempdat()
 	 tempchang();
    f=ReadTemperature();
 	 
-	 if ( f < -55 || f > 125 ) {
+	 if ( f < 0 || f > 125 ) {
 		 t[0] = '-';
 		 DelayUs2x(25);
 		 t[1] = '-';

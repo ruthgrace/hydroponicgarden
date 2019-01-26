@@ -58,7 +58,7 @@ void Clear_Data (void)
 
 void UART_PutStringAndNum(unsigned int num,unsigned int num1)
   {
-		if ( num < 0 || num > 100 || num1 < -20 || num1 > 80 ) {
+		if ( num < 0 || num > 1000 || num1 < 0 || num1 > 1760 ) {
 			a[3] = '-';
 			a[2] = '.';
 			a[1] = '-';
