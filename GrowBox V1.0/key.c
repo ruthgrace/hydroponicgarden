@@ -470,11 +470,17 @@ void Keyprocessing(int x)   //按键值处理函数
 				} else {
 					Lamp_flag1 = 0;
 				}
-				break;   //
+				break;
 				
 		  case 5:   Fan_flag=~Fan_flag;      break;
 		
-		  case 6:   timeflag=~timeflag;      break;     // Pump1_flag=~Pump1_flag;
+		  case 6:   //timeflag=~timeflag;      break;     // Pump1_flag=~Pump1_flag;
+				if (Pump1_flag == 0) {
+					Pump1_flag = 1;
+				} else {
+					Pump1_flag = 0;
+				}
+				break;
 				
 		  case 7:   Pump2_flag=~Pump2_flag;  break;
 								 			 
