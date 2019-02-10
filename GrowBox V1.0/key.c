@@ -464,7 +464,13 @@ void Keyprocessing(int x)   //按键值处理函数
 			}
 			break;
 				
-		  case 4:   Lamp_flag1=~Lamp_flag1;  break;   //
+		  case 4:
+				if (Lamp_flag1 == 0) {
+					Lamp_flag1 = 1;
+				} else {
+					Lamp_flag1 = 0;
+				}
+				break;   //
 				
 		  case 5:   Fan_flag=~Fan_flag;      break;
 		

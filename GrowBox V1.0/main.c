@@ -94,26 +94,21 @@ void Bell()
 /*************¼ÌµçÆ÷¿ØÖÆº¯Êý**************/
 void  Raly_Contrl()
 {
-		if((time_buf1[6] == 0)||(temp8==0xfd)||(temp8==0xfb))    
+		if((time_buf1[6] == 0)||(temp8==0xfb))
 		{
-			if(((Alarm[0]==time_buf1[4])&&(Alarm[1]==time_buf1[5])&&(time_buf1[4]!= 0))||(temp8==0xfd))
+			if(((Alarm[0]==time_buf1[4])&&(Alarm[1]==time_buf1[5])&&(time_buf1[4]!= 0)))
 			{
 			    if(((Alarm[0]==time_buf1[4])&&(Alarm[1]==time_buf1[5])&&(time_buf1[4]!= 0))&&(time_buf1[6] == 0))
 					{
-						Lamp_flag1=1;
+						Sys_Start_Modechage();
 						
 					}
-				   if(Lamp_flag1==0)
-					 Lamp_flag1=1; 
 
       }
-		  if(((Alarm[2]==time_buf1[4])&&(Alarm[3]==time_buf1[5])&&(time_buf1[4]!= 0))||(temp8==0xfd))
+		  if(((Alarm[2]==time_buf1[4])&&(Alarm[3]==time_buf1[5])&&(time_buf1[4]!= 0)))
 			{
 					if((Alarm[2]==time_buf1[4])&&(Alarm[3]==time_buf1[5])&&(time_buf1[4]!= 0)&&(time_buf1[6] == 0) )  
-						 Lamp_flag1=0;	
-				
-					if(Lamp_flag1==1)
-						 Lamp_flag1=0; 
+						 Sys_Start_Modechage();
 			}
 		 		
 		 if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
