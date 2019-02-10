@@ -117,11 +117,7 @@ void  Raly_Contrl()
 								if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0)) )    
 								{
 								  Pump1_flag=1;	
-                }									
-								if(timeflag)
-								{
-								  Pump1_flag=1;
-								}
+                }
 						  }
 							
 							if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0)) //||(temp8==0xfb))
@@ -130,11 +126,7 @@ void  Raly_Contrl()
 								if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
 								{
 								    Pump1_flag=0;
-                }									
-                if(!timeflag)
-								{
-								    Pump1_flag=0;
-								}
+                }
 						  }							
 						 
             }	
@@ -148,12 +140,7 @@ void  Raly_Contrl()
 							   if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				            ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							    
-								     Pump1_flag=1;	
-							
-								  if(timeflag)
-									{
-										Pump1_flag=1;
-									}
+								     Pump1_flag=1;
 							}
 							
 							
@@ -164,11 +151,6 @@ void  Raly_Contrl()
 				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))	)
 								
   								 Pump1_flag=0;
-							 
-									if(!timeflag)
-									{
-											Pump1_flag=0;
-									}
 							 }
             }	
            
@@ -184,11 +166,6 @@ void  Raly_Contrl()
 							    
 								    Pump1_flag=1;
 								
-								  if(timeflag)
-									{
-										Pump1_flag=1;
-									}
-								
 							}
 							
 							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
@@ -200,10 +177,6 @@ void  Raly_Contrl()
 			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							  
 								 Pump1_flag=0;
-								 if(!timeflag)
-									{
-										Pump1_flag=0;
-									}
 								
 							 }
 							 
@@ -217,22 +190,12 @@ void  Raly_Contrl()
 							{
 								if((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))
 								Pump1_flag=1;
-                
-                  if(timeflag)
-									{
-										Pump1_flag=1;
-									}								
 							
 						  }
 							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
 							{
 								if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
-							    Pump1_flag=0; 
-								
-								  if(!timeflag)
-									{
-										Pump1_flag=0;
-									}								
+							    Pump1_flag=0;	
 								
               }
 							
@@ -247,12 +210,7 @@ void  Raly_Contrl()
 								  if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				            ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)) )
 							     
-									   Pump1_flag=1;	
-									
-							    if(timeflag)
-									{
-										Pump1_flag=1;
-									}					
+									   Pump1_flag=1;
 							}
 							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||(temp8==0xfb))
@@ -261,11 +219,6 @@ void  Raly_Contrl()
 				            ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0)))
 								
 							     Pump1_flag=0;
-							   
-								 if(!timeflag)
-								 {
-										Pump1_flag=0;
-								 }					
 						 }
             }	
            
@@ -279,12 +232,7 @@ void  Raly_Contrl()
 				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
 			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							  
-								  Pump1_flag=1;	
-							
-							    if(timeflag)
-									{
-										Pump1_flag=1;
-									}					
+								  Pump1_flag=1;
 						 }
 							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
@@ -295,11 +243,6 @@ void  Raly_Contrl()
 				            ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
 			              ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
     							  Pump1_flag=0;
-							
-							    if(!timeflag)
-									{
-										Pump1_flag=0;
-									}		
 								}									
             }	
 						
@@ -309,22 +252,13 @@ void  Raly_Contrl()
 							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
 							{
 								if((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))
-								Pump1_flag=1;	
-							  if(timeflag)
-								{
-									Pump1_flag=1;
-								}					
+								Pump1_flag=1;
 						   }
 							if(((temp8==0xdf)||(Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
 						 {
 							  if((temp8==0xdf)||(Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
 							  
-								Pump1_flag=0; 
-               
-								if(!timeflag)
-								{
-									Pump1_flag=0;
-								}					
+								Pump1_flag=0;
 						 }							
 						 
            }	
@@ -336,11 +270,7 @@ void  Raly_Contrl()
 							{
 							   if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				         ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)) )
-							    Pump1_flag=1;	
-							    if(timeflag)
-								 {
-									Pump1_flag=1;
-								 }				
+							    Pump1_flag=1;
 						  }
 						
 						if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
@@ -349,10 +279,6 @@ void  Raly_Contrl()
 							   if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							   Pump1_flag=0;
-							   if(!timeflag)
-								 {
-									Pump1_flag=0;
-								 }				
 						  }
            }	
 				
@@ -368,11 +294,6 @@ void  Raly_Contrl()
 			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							 
 								Pump1_flag=1;
-								
-							  if(timeflag)
-								{
-									Pump1_flag=1;
-								}				
 							}
 							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
@@ -383,10 +304,6 @@ void  Raly_Contrl()
 			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
 							 
   								Pump1_flag=0;
-								 if(!timeflag)
-								 {
-									Pump1_flag=0;
-								 }				
 							 }
            }	
 			}
