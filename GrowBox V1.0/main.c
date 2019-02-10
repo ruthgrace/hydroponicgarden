@@ -82,6 +82,7 @@ unsigned char timeflag=0;
 
 void Sys_Start_Modechage();
 void Pump_Modechange();
+int is_light_change_time();
 
 void Bell()
 {
@@ -94,23 +95,11 @@ void Bell()
 /*************继电器控制函数**************/
 void  Raly_Contrl()
 {
+	if (is_light_change_time()) {
+		Sys_Start_Modechage();
+	}
 		if((time_buf1[6] == 0)||(temp8==0xfb))
-		{
-			if(((Alarm[0]==time_buf1[4])&&(Alarm[1]==time_buf1[5])&&(time_buf1[4]!= 0)))
-			{
-			    if(((Alarm[0]==time_buf1[4])&&(Alarm[1]==time_buf1[5])&&(time_buf1[4]!= 0))&&(time_buf1[6] == 0))
-					{
-						Sys_Start_Modechage();
-						
-					}
-
-      }
-		  if(((Alarm[2]==time_buf1[4])&&(Alarm[3]==time_buf1[5])&&(time_buf1[4]!= 0)))
-			{
-					if((Alarm[2]==time_buf1[4])&&(Alarm[3]==time_buf1[5])&&(time_buf1[4]!= 0)&&(time_buf1[6] == 0) )  
-						 Sys_Start_Modechage();
-			}
-		 		
+		{		 		
 		 if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
 				((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
 			  ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0))||
@@ -606,7 +595,7 @@ void main()
 			
        if(Cflag3==1)      //模式变化标志
 			 {
-				  LED_Mode();
+				  LED_Mode(flag3);
 				  Sys_Start_Modechage();
 				  Cflag3=0;
        } 
@@ -687,7 +676,7 @@ void main()
 			Raly_Contrl();
 		  if(Sflag)
 			{
-				 LED_Mode();
+				 LED_Mode(flag3);
 				 Pum_Mode();
 			   Pump_Modechange();
 				 Sys_Start_Modechage();
@@ -961,3 +950,15 @@ void Pump_Modechange()
 		Pump1_flag = pump1_state(flag3, flag4, led_start_hour, led_start_minute, current_hour, current_minute);
 }
 
+int is_light_change_time() {
+	// State changes only occur on the minute.
+	if (time_buf1[6] != 0) {
+		return 0;
+	}
+	// Check if it is time for the light to turn on
+	if (((Alarm[0] == time_buf1[4]) && (Alarm[1] == time_buf1[5])) ||
+      ((Alarm[2] == time_buf1[4]) && (Alarm[3] == time_buf1[5]))) {
+		return 1;
+	}
+	return 0;
+}
