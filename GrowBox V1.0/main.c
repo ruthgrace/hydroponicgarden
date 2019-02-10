@@ -611,13 +611,14 @@ void main()
 			
        if(Cflag3==1)      //模式变化标志
 			 {
+				  LED_Mode();
 				  Sys_Start_Modechage();
 				  Cflag3=0;
        } 
 				
 			 if(Cflag4==1)    //泵模式变化标志
 			 {
-
+          Pum_Mode();
 					Pump_Modechange();
           Cflag4=0	;				
        }
@@ -691,6 +692,8 @@ void main()
 			Raly_Contrl();
 		  if(Sflag)
 			{
+				 LED_Mode();
+				 Pum_Mode();
 			   Pump_Modechange();
 				 Sys_Start_Modechage();
          DelayMs(10);				
@@ -960,7 +963,6 @@ void Pump_Modechange()
 		current_hour = time_buf1[4];
 		current_minute = time_buf1[5];
 
-		Pum_Mode();
 		Pump1_flag = pump1_state(flag3, flag4, led_start_hour, led_start_minute, current_hour, current_minute);
 }
 
