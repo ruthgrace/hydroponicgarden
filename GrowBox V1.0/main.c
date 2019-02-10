@@ -83,6 +83,7 @@ unsigned char timeflag=0;
 void Sys_Start_Modechage();
 void Pump_Modechange();
 int is_light_change_time();
+int is_pump_change_time();
 
 void Bell()
 {
@@ -98,216 +99,9 @@ void  Raly_Contrl()
 	if (is_light_change_time()) {
 		Sys_Start_Modechage();
 	}
-		if (time_buf1[6] == 0) //(temp8==0xfb)
-		{		 		
-		 if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			  ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0))||
-		    ((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			  ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb)
-			{
-          
-        //Lampµ„¡¡12hr
-				
-            if((flag3==1)&&(flag4==1))//||(temp8==0xfb))
-            {
-							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							{	
-								if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0)) )    
-								{
-								  Pump1_flag=1;	
-                }
-						  }
-							
-							if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0)) //||(temp8==0xfb))
-							   
-							{ 
-								if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
-								{
-								    Pump1_flag=0;
-                }
-						  }							
-						 
-            }	
-
-
-            if((flag3==1)&&(flag4==2))//||(temp8==0xfb))	
-						{
-							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))) // |(temp8==0xfb) )
-							 {
-							   if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				            ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							    
-								     Pump1_flag=1;
-							}
-							
-							
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))  
-							 {  
-								 if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))	)
-								
-  								 Pump1_flag=0;
-							 }
-            }	
-           
-            if((flag3==1)&&(flag4==3)) //||(temp8==0xfb))
-            {
-							if((((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))) //||(temp8==0xfb))
-							{  
-							  if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							    
-								    Pump1_flag=1;
-								
-							}
-							
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							 {
-								if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							  
-								 Pump1_flag=0;
-								
-							 }
-							 
-            }	
-
-
-           //Lampµ„¡¡18Hr
-						 if((flag3==2)&&(flag4==1)) //||(temp8==0xfb))
-            {
-							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||(temp8==0xfb))
-							{
-								if((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))
-								Pump1_flag=1;
-							
-						  }
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							{
-								if((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
-							    Pump1_flag=0;	
-								
-              }
-							
-						 
-            }	
-
-            if((flag3==2)&&(flag4==2)||(temp8==0xfb))	
-						{
-							if((((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)))||(temp8==0xfb))
-							{
-								  if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				            ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)) )
-							     
-									   Pump1_flag=1;
-							}
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||(temp8==0xfb))
-							{
-						     if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				            ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0)))
-								
-							     Pump1_flag=0;
-						 }
-            }	
-           
-            if((flag3==2)&&(flag4==3)) //||(temp8==0xbf))
-            {
-							if((((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))) //||(temp8==0xfb))
-							{
-							  if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							  
-								  Pump1_flag=1;
-						 }
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							 
-                {
-									if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				            ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			              ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
-    							  Pump1_flag=0;
-								}									
-            }	
-						
-						//Lampµ„¡¡24hr
-						 if((flag3==3)&&(flag4==1)) //||(temp8==0xfb))
-            {
-							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							{
-								if((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))
-								Pump1_flag=1;
-						   }
-							if(((temp8==0xdf)||(Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-						 {
-							  if((temp8==0xdf)||(Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))
-							  
-								Pump1_flag=0;
-						 }							
-						 
-           }	
-
-            if((flag3==3)&&(flag4==2)) //||(temp8==0xfb))	
-						{
-							if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb) )
-							{
-							   if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0)) )
-							    Pump1_flag=1;
-						  }
-						
-						if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				      ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-						  {
-							   if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				         ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							   Pump1_flag=0;
-						  }
-           }	
-				
-           
-            if((flag3==3)&&(flag4==3)) //||(temp8==0xfb))
-            {
-							if((((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))) //||(temp8==0xfb))
-							{
-							  if(((Alarm_Pour1[0]==time_buf1[4])&&(Alarm_Pour1[1]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[4]==time_buf1[4])&&(Alarm_Pour1[5]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[8]==time_buf1[4])&&(Alarm_Pour1[9]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							 
-								Pump1_flag=1;
-							}
-							if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0))) //||(temp8==0xfb))
-							 {
-								if(((Alarm_Pour1[2]==time_buf1[4])&&(Alarm_Pour1[3]==time_buf1[5])&&(time_buf1[4]!= 0))||
-				        ((Alarm_Pour1[6]==time_buf1[4])&&(Alarm_Pour1[7]==time_buf1[5])&&(time_buf1[4]!= 0))||
-			          ((Alarm_Pour1[10]==time_buf1[4])&&(Alarm_Pour1[11]==time_buf1[5])&&(time_buf1[4]!= 0)))
-							 
-  								Pump1_flag=0;
-							 }
-           }	
-			}
-		}
+	if (is_pump_change_time()) {
+		Pump_Modechange();
+	}
 }
 
 
@@ -875,6 +669,35 @@ int is_light_change_time() {
 	// Check if it is time for the light to turn on
 	if (((Alarm[0] == time_buf1[4]) && (Alarm[1] == time_buf1[5])) ||
       ((Alarm[2] == time_buf1[4]) && (Alarm[3] == time_buf1[5]))) {
+		return 1;
+	}
+	return 0;
+}
+
+int is_pump_change_time() {
+	// State changes only occur on the minute.
+	if (time_buf1[6] != 0) {
+		return 0;
+	}
+	// Check if the current time and minute match the first pump on/off time
+	if (((Alarm_Pour1[0] == time_buf1[4]) && (Alarm_Pour1[1] == time_buf1[5])) ||
+      ((Alarm_Pour1[2] == time_buf1[4]) && (Alarm_Pour1[3] == time_buf1[5])))	{
+		return 1;
+	}
+	// If pump mode is 2x or more, check if the current time and minute match the second pump on/off time
+	if (flag4 == 1) {
+		return 0;
+	}
+	if (((Alarm_Pour1[4] == time_buf1[4]) && (Alarm_Pour1[5] == time_buf1[5])) ||
+      ((Alarm_Pour1[6] == time_buf1[4]) && (Alarm_Pour1[7] == time_buf1[5])))	{
+		return 1;
+	}
+	// If pump mode is 3x or more, check if the current time and minute match the second pump on/off time
+	if (flag4 == 2) {
+		return 0;
+	}
+	if (((Alarm_Pour1[8] == time_buf1[4]) && (Alarm_Pour1[9] == time_buf1[5])) ||
+      ((Alarm_Pour1[10] == time_buf1[4]) && (Alarm_Pour1[11] == time_buf1[5])))	{
 		return 1;
 	}
 	return 0;
