@@ -79,6 +79,9 @@ unsigned int temper;
 extern float temperature;
 unsigned char timeflag=0;
 
+extern unsigned char last_key_detected;
+extern unsigned char last_key_pressed;
+
 
 void Sys_Start_Modechage();
 void Pump_Modechange();
@@ -260,6 +263,14 @@ void main()
           num=0;
           DelayMs(50);				
 				  
+			} else if (last_key_pressed != 0) {
+				  Bell();
+					Keyprocessing(last_key_pressed); //键值处理
+					LCD_PutGraphic(pic0);
+					ClrScreen();
+				  LCD_flag=1;				
+          num=0;
+				  last_key_pressed = 0;
 			}
      
 			LED_Mode(flag3)	;
@@ -419,11 +430,17 @@ void main()
 //定时器0中断服务函数
 void Timer0_isr(void) interrupt 1 using 1	
 {
+	  unsigned char keyval;
 		TR0 = 0;
 		TH0 = (65536-10000)/256;   
 		TL0 = (65536-10000)%256;
 		num++;
-
+	
+	  load_key();
+		if (temp8 != last_key_detected) {
+			last_key_detected = temp8;
+		  KeyPress();
+		}
 	  if(num==6000)
 		{
 			num=0;

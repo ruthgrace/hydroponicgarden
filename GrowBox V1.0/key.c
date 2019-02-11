@@ -103,7 +103,7 @@ unsigned char KeyScan(void)
            
      }
       
-	    else return KeyPress();
+	    else return 0;
 	   
 
 }
