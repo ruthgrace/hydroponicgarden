@@ -64,7 +64,10 @@ extern unsigned char TTT;
 
 extern int Interface;
 
+void load_key();
+void Bell();
 unsigned char KeyScan(void);
+unsigned char KeyPress(void);
 void Keyprocessing(int x);
 void LED_Mode(unsigned char flag10);
 

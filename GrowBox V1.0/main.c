@@ -251,7 +251,8 @@ void main()
 		      	 
       KeyValue=KeyScan();
 			if(KeyValue!=0)    //如果有键按下
-			{	 				  
+			{
+				  Bell();
 					Keyprocessing(KeyValue); //键值处理
 					LCD_PutGraphic(pic0);
 					ClrScreen();
@@ -419,11 +420,11 @@ void main()
 void Timer0_isr(void) interrupt 1 using 1	
 {
 		TR0 = 0;
-		TH0 = (65536-50000)/256;   
-		TL0 = (65536-50000)%256;
+		TH0 = (65536-10000)/256;   
+		TL0 = (65536-10000)%256;
 		num++;
 
-	  if(num==1200)
+	  if(num==6000)
 		{
 			num=0;
 			LCD_flag=0;
