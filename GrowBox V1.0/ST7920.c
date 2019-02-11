@@ -347,7 +347,7 @@ void ClrScreen()
 {  
 		Write_Cmd(0x30); 
     Write_Cmd(0x01);
-    DelayMs(15);
+    //DelayMs(15);
 }
    	
 /*------------------------------------------------

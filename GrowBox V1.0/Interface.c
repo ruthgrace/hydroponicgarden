@@ -52,25 +52,25 @@ void interface_display(int x)
       switch(x)
 	  {	 //主界面显示
 	     case MainInterface:  
-		          DelayMs(20);
-		          sprintf(temp,"%02d-%02d-20%02d",(int)time_buf1[2],(int)time_buf1[3],(int)time_buf1[1]);//年月日
-              LCD_Display_Array(0,0,temp,10);
+		          //DelayMs(20);
+		          sprintf(temp,"%02d-%02d-20%02d  ",(int)time_buf1[2],(int)time_buf1[3],(int)time_buf1[1]);//年月日
+              LCD_Display_Array(0,0,temp,12);
 	
 	               switch(time_buf1[7])
 	               {
-										case 1:   LCD_PutString(6,1,"Mon");
+										case 1:   LCD_PutString(6,1,"Mon ");
 														  break;
-										case 2:   LCD_PutString(6,1,"Tue");
+										case 2:   LCD_PutString(6,1,"Tue ");
 															break;
-										case 3:   LCD_PutString(6,1,"Wed");
+										case 3:   LCD_PutString(6,1,"Wed ");
 															break;
-										case 4:   LCD_PutString(6,1,"Thu");
+										case 4:   LCD_PutString(6,1,"Thu ");
 															break;
-										case 5:   LCD_PutString(6,1,"Fri");
+										case 5:   LCD_PutString(6,1,"Fri ");
 															break;
-										case 6:   LCD_PutString(6,1,"Sat");
+										case 6:   LCD_PutString(6,1,"Sat ");
 															break;
-										case 7:   LCD_PutString(6,1,"Sun");
+										case 7:   LCD_PutString(6,1,"Sun ");
 															break;
 	               }
 	              
@@ -83,8 +83,8 @@ void interface_display(int x)
 								huatu(6,num1632[time_buf1[6]/10]);
 								huatu(7,num1632[time_buf1[6]%10]);
 */							
-              sprintf(temp,"%02d:%02d:%02d",(int)time_buf1[4],(int)time_buf1[5],(int)time_buf1[6]);//时分秒
-              LCD_Display_Array(1,2,temp,10);
+              sprintf(temp,"    %02d:%02d:%02d    ",(int)time_buf1[4],(int)time_buf1[5],(int)time_buf1[6]);//时分秒
+              LCD_Display_Array(1,0,temp,16);
 														 
 							LCD_PutString(0,4,"WaterTemp:");
 	            LCD_Display_Array(3,5,t,4);
@@ -92,7 +92,7 @@ void interface_display(int x)
 								 
 							LCD_PutString(0,3,"H:");
 							LCD_Display_Array(2,1,a,4);
-							LCD_PutString(3,3,"%");
+							LCD_PutString(3,3,"% ");
 								
 
               LCD_PutString(4,3,"T:");
@@ -102,35 +102,35 @@ void interface_display(int x)
 								break;
 /**********************************主菜单界面显示********************************/        
 	case  Mainmenu:  
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1,"   Main Menu    ");
-		LCD_PutString(0,2,"Date/Time Set");
-	  LCD_PutString(0,3,"Schedule");
-	  LCD_PutString(0,4,"LED/Pump/Fan");
+		LCD_PutString(0,2,"Date/Time Set ");
+	  LCD_PutString(0,3,"Schedule      ");
+	  LCD_PutString(0,4,"LED/Pump/Fan  ");
 		move_selection(flag1);
 		break;
 /****************************时间日期设置选择显示界面*********************************/
 	case  Date_Time_Setting:
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1," Date Time Set  ");
-		LCD_PutString(0,2,"Date Setting");
-		LCD_PutString(0,3,"Time Setting");
-		LCD_PutString(0,4," ");	
+		LCD_PutString(0,2,"Date Setting  ");
+		LCD_PutString(0,3,"Time Setting  ");
+		LCD_PutString(0,4,"              ");	
 	  move_selection(flag1);
 		break;	
 								
 /****************************灯泵模式设置选择界面*******************************************/		
 	case  Lamp_Pump_Fan_Setting:
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1,"LED Pump Fan Set");
-		LCD_PutString(0,2,"LED  Mode"); 
-		LCD_PutString(0,3,"Pump Mode");
-		LCD_PutString(0,4,"Fan  Mode");
+		LCD_PutString(0,2,"LED  Mode     "); 
+		LCD_PutString(0,3,"Pump Mode     ");
+		LCD_PutString(0,4,"Fan  Mode     ");
 		move_selection(flag6);
 		break;
 /******************************开始时间点设置界面***********************************/
 			case  AlarmSetInterface:  
-		          DelayMs(20);
+		          //DelayMs(20);
 				  
 				         switch(flag5)
 	               {
@@ -154,7 +154,7 @@ void interface_display(int x)
 							 						
 /*******************************进入到日期设置界面**********************************/			 
 		case  DateSetInterface:  
-		              DelayMs(20);
+		              //DelayMs(20);
 				          switch(flag2)
 	               {
 										case 1:   LCD_PutString(0,1,"  Date Setting  ");
@@ -180,7 +180,7 @@ void interface_display(int x)
 										break;
 /**************************************进入到时间设置界面**********************************/
 	   	case  TimeSetInterface:  
-									DelayMs(20);
+									//DelayMs(20);
 									switch(flag8)
 	               {
 	                case 1:   LCD_PutString(0,1," Time Setting  ");
@@ -204,31 +204,31 @@ void interface_display(int x)
 							 
 /**************************************进入灯模式选择界面**********************************/							 
 	case  Lamp_Mode :
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1,"LED Mode Select ");
-		LCD_PutString(0,2,"Mode1   12hr");
-		LCD_PutString(0,3,"Mode2   18hr");
-		LCD_PutString(0,4,"Mode3   24hr");
+		LCD_PutString(0,2,"Mode1   12hr  ");
+		LCD_PutString(0,3,"Mode2   18hr  ");
+		LCD_PutString(0,4,"Mode3   24hr  ");
 		move_selection(flag3);
 		break;
 /************************************进入泵模式选择界面************************************/
 	case  Pump_Mode:
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1,"Pump Mode Select");
-		LCD_PutString(0,2,"Mode1   1X");
-		LCD_PutString(0,3,"Mode2   2X");
-		LCD_PutString(0,4,"Mode3   3X");
+		LCD_PutString(0,2,"Mode1   1X    ");
+		LCD_PutString(0,3,"Mode2   2X    ");
+		LCD_PutString(0,4,"Mode3   3X    ");
 		move_selection(flag4);
 		break;
 							 
 /************************************进入风扇模式选择界面************************************/
 							 
 	case  Fan_Mode :
-		DelayMs(20);
+		//DelayMs(20);
 		LCD_PutString(0,1,"Fan Mode Select ");
-		LCD_PutString(0,2,"High");
-		LCD_PutString(0,3,"Medium");
-		LCD_PutString(0,4,"Low");
+		LCD_PutString(0,2,"High          ");
+		LCD_PutString(0,3,"Medium        ");
+		LCD_PutString(0,4,"Low           ");
 		move_selection(flag7);
 		break;			 
 								

@@ -70,7 +70,7 @@ unsigned char   Alarm[5];	      //闹钟报警参数缓存数组
 unsigned char   Alarm_Pour1[16];
 unsigned char 	Eprom[4];
 
-unsigned int   flush,num;    //PWM占空比调节
+unsigned int   flush,num,display_delay;    //PWM占空比调节
 unsigned char  Alarmflag=0; //闹钟报警标志	默认不报警
 
 
@@ -192,6 +192,7 @@ void main()
 	  Lamp_Ctrl=1;
 	  Fan_Ctrl=1;
 	  Pump1_Ctrl=1;
+	  display_delay=0;
 	  
 	 if(!Power)
 	 {
@@ -260,12 +261,12 @@ void main()
 					ClrScreen();
 				  LCD_flag=1;				
           num=0;
-          DelayMs(50);				
+          //DelayMs(50);				
 				  
 			} else if (last_key_pressed != 0) {
 					Keyprocessing(last_key_pressed); //键值处理
-					LCD_PutGraphic(pic0);
-					ClrScreen();
+					//LCD_PutGraphic(pic0); //having this has the lines on the screen and the extra characters and there's still a delay
+					//ClrScreen(); //having this fixes the lines on the screen but there's still a delay
 				  LCD_flag=1;				
           num=0;
 				  last_key_pressed = 0;
@@ -421,7 +422,7 @@ void main()
 			DelayMs(1);
 			AM2320_Init();
       			
-			interface_display(Interface);//显示界面
+			//interface_display(Interface);//显示界面
 			
    }
  }
@@ -433,13 +434,20 @@ void Timer0_isr(void) interrupt 1 using 1
 		TH0 = (65536-10000)/256;   
 		TL0 = (65536-10000)%256;
 		num++;
+	  display_delay++;
 	
 	  load_key();
 		if (temp8 != last_key_detected) {
 			last_key_detected = temp8;
 		  last_key_pressed = KeyPress();
 		}
-	  if(num==6000)
+		if (Power_flag && display_delay >= 2) {
+			//LCD_PutGraphic(pic0);
+			//ClrScreen();
+			interface_display(Interface); //显示界面
+			display_delay = 0;
+		}
+	  if(num>=6000)
 		{
 			num=0;
 			LCD_flag=0;
