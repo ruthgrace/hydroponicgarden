@@ -34,14 +34,14 @@ void Bell()
             按键扫描函数，返回扫描键值
 ------------------------------------------------*/
 unsigned char KeyPress(void) {
-	    if(temp8==0xfe)  { return 5; DelayMs(10);}   //Fan   5   1
-			else if(temp8==0xfd)  { return 4; DelayMs(10);}   //lamp  4   2
-			else if(temp8==0xfb)	{ return 6; DelayMs(10);}   //Pump1 6   3
-			else if(temp8==0xf7)  { return 7; DelayMs(10);}   //Pump2 7   4
-			else if(temp8==0xef)  { return 3; DelayMs(10);}   //UP    3   5
-			else if(temp8==0xdf)	{ return 8; DelayMs(10);}   //EXit  8   6
-			else if(temp8==0xbf)  { return 1; DelayMs(10);}   //Set   1   7
-			else if(temp8==0x7f)  { return 2; DelayMs(10);}   //Down  2   8
+	    if(temp8==0xfe)  { return 5;}   //Fan   5   1
+			else if(temp8==0xfd)  { return 4;}   //lamp  4   2
+			else if(temp8==0xfb)	{ return 6;}   //Pump1 6   3
+			else if(temp8==0xf7)  { return 7;}   //Pump2 7   4
+			else if(temp8==0xef)  { return 3;}   //UP    3   5
+			else if(temp8==0xdf)	{ return 8;}   //EXit  8   6
+			else if(temp8==0xbf)  { return 1;}   //Set   1   7
+			else if(temp8==0x7f)  { return 2;}   //Down  2   8
 			else { return 0; }
 }
 
@@ -67,10 +67,6 @@ void load_key() {
 unsigned char KeyScan(void)
 {
 	  key_press_num=0;
-    load_key();
-		if (temp8 != last_key_detected) {
-			last_key_detected = temp8;
-		}
  
 		  if(!Power) 
       {
@@ -85,20 +81,15 @@ unsigned char KeyScan(void)
 								break;
 						} 
           }						
-		      if(key_press_num==200) //大约2s
+		      if(key_press_num>=200) //大约2s
 					{
-						 last_key_pressed = 9;
 						 Bell();
 						 return 9;
           }	
 				  if(key_press_num<200)
 		 		 {
-					   last_key_pressed = 10;
 						 return 10;
-         } 
-                							
-            key_press_num=0;
-           
+         }
      }
       
 	    else return 0;
