@@ -11,6 +11,9 @@ unsigned char flagc=0;
 unsigned char CTimeflag=0;
 unsigned char Cflag3=0;
 unsigned char Cflag4=0;
+unsigned char last_key_pressed;
+unsigned char last_key_detected;
+unsigned int key_press_num;
 
 unsigned char  Fan_flag=0;
 unsigned char Alarm_Temp[5];
@@ -20,6 +23,12 @@ unsigned char S_flag=1;     //开始时间不确认保存原始值标志
 unsigned char C_flag=1;     //系统时间修改不保存保存原始值标志位
 unsigned char D_flag=1;      //系统日期修改不确认标志
 
+void Bell()
+{
+		beep=0;
+	  DelayMs(100);
+	  beep=1;
+}
 
 /*------------------------------------------------
             按键扫描函数，返回扫描键值
@@ -28,7 +37,7 @@ unsigned char D_flag=1;      //系统日期修改不确认标志
 unsigned char KeyScan(void)
 {
     unsigned char i;
-	  unsigned int  key_press_num=0;
+	  key_press_num=0;
     
     HC165_CK = 1;
     HC165_nPL = 0;        //HC165读按键
@@ -46,6 +55,9 @@ unsigned char KeyScan(void)
         }
     }
     HC165_CK = 0;
+		if (temp8 != last_key_detected) {
+			last_key_detected = temp8;
+		}
  
 		  if(!Power) 
       {
@@ -61,11 +73,15 @@ unsigned char KeyScan(void)
 						} 
           }						
 		      if(key_press_num==200) //大约2s
-					{									 
+					{
+						 last_key_pressed = 9;
+						 Bell();
 						 return 9;
           }	
 				  if(key_press_num<200)
 		 		 {
+					   Bell();
+					   last_key_pressed = 10;
 						 return 10;
          } 
                 							
@@ -73,15 +89,15 @@ unsigned char KeyScan(void)
            
      }
       
-	    else if(temp8==0xfe)  { return 5; DelayMs(10);}   //Fan   5   1
-			else if(temp8==0xfd)  { return 4; DelayMs(10);}   //lamp  4   2
-			else if(temp8==0xfb)	{ return 6; DelayMs(10);}   //Pump1 6   3
-			else if(temp8==0xf7)  { return 7; DelayMs(10);}   //Pump2 7   4
-			else if(temp8==0xef)  { return 3; DelayMs(10);}   //UP    3   5
-			else if(temp8==0xdf)	{ return 8; DelayMs(10);}   //EXit  8   6
-			else if(temp8==0xbf)  { return 1; DelayMs(10);}   //Set   1   7
-			else if(temp8==0x7f)  { return 2; DelayMs(10);}   //Down  2   8
-			else  return 0;
+	    else if(temp8==0xfe)  { Bell(); last_key_pressed = 5; return 5; DelayMs(10);}   //Fan   5   1
+			else if(temp8==0xfd)  { Bell(); last_key_pressed = 4; return 4; DelayMs(10);}   //lamp  4   2
+			else if(temp8==0xfb)	{ Bell(); last_key_pressed = 6; return 6; DelayMs(10);}   //Pump1 6   3
+			else if(temp8==0xf7)  { Bell(); last_key_pressed = 7; return 7; DelayMs(10);}   //Pump2 7   4
+			else if(temp8==0xef)  { Bell(); last_key_pressed = 3; return 3; DelayMs(10);}   //UP    3   5
+			else if(temp8==0xdf)	{ Bell(); last_key_pressed = 8; return 8; DelayMs(10);}   //EXit  8   6
+			else if(temp8==0xbf)  { Bell(); last_key_pressed = 1; return 1; DelayMs(10);}   //Set   1   7
+			else if(temp8==0x7f)  { Bell(); last_key_pressed = 2; return 2; DelayMs(10);}   //Down  2   8
+			else { last_key_pressed = 0; return 0; }
 	   
 
 }

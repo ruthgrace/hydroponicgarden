@@ -13,7 +13,7 @@
 
 
 
-sbit beep       = P3^0;    //定义蜂鸣器端口
+//sbit beep       = P3^0;    //定义蜂鸣器端口
 sbit Lamp_Ctrl  = P2^0;    //灯控制端口
 sbit Fan_Ctrl   = P2^1;    //灯控制端口
 sbit Pump1_Ctrl = P2^2;    //淋水泵控制端口
@@ -84,13 +84,6 @@ void Sys_Start_Modechage();
 void Pump_Modechange();
 int is_light_change_time();
 int is_pump_change_time();
-
-void Bell()
-{
-		beep=0;
-	  DelayMs(100);
-	  beep=1;
-}
 
 
 /*************继电器控制函数**************/
@@ -211,8 +204,7 @@ void main()
 	 {		 
 		  LCD_flag=1;
 		  
-		  Bell();
-		 	
+	 	
 		 Init_Timer0();   //定时器T0初始化
 		 Init_Timer1();
 		 Ds1302_Init();   //DS1302初始化
@@ -260,7 +252,6 @@ void main()
       KeyValue=KeyScan();
 			if(KeyValue!=0)    //如果有键按下
 			{	 				  
-				  Bell();
 					Keyprocessing(KeyValue); //键值处理
 					LCD_PutGraphic(pic0);
 					ClrScreen();

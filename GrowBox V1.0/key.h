@@ -17,7 +17,7 @@ sbit Power = P4^2;
 sbit PumP2 = P3^6;
 sbit Power_C  = P2^5;
 
-
+sbit beep       = P3^0;    //¶¨Òå·äÃùÆ÷¶Ë¿Ú
 
 extern unsigned char flagc;
 extern unsigned char temp8;
@@ -35,6 +35,9 @@ extern unsigned int   flag5;
 extern unsigned int   flag6;
 extern unsigned char  flag7;
 extern unsigned int   flag8;
+extern unsigned char last_key_pressed;
+extern unsigned char last_key_detected;
+extern unsigned int key_press_num;
 
 extern unsigned int  LCD_flag;
 extern unsigned char Lamp_flag2;
