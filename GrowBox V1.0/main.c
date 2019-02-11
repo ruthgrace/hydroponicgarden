@@ -255,7 +255,6 @@ void main()
       KeyValue=KeyScan();
 			if(KeyValue!=0)    //如果有键按下
 			{
-				  Bell();
 					Keyprocessing(KeyValue); //键值处理
 					LCD_PutGraphic(pic0);
 					ClrScreen();
@@ -264,13 +263,13 @@ void main()
           DelayMs(50);				
 				  
 			} else if (last_key_pressed != 0) {
-				  Bell();
 					Keyprocessing(last_key_pressed); //键值处理
 					LCD_PutGraphic(pic0);
 					ClrScreen();
 				  LCD_flag=1;				
           num=0;
 				  last_key_pressed = 0;
+				  Bell();
 			}
      
 			LED_Mode(flag3)	;
@@ -430,7 +429,6 @@ void main()
 //定时器0中断服务函数
 void Timer0_isr(void) interrupt 1 using 1	
 {
-	  unsigned char keyval;
 		TR0 = 0;
 		TH0 = (65536-10000)/256;   
 		TL0 = (65536-10000)%256;
@@ -439,7 +437,7 @@ void Timer0_isr(void) interrupt 1 using 1
 	  load_key();
 		if (temp8 != last_key_detected) {
 			last_key_detected = temp8;
-		  KeyPress();
+		  last_key_pressed = KeyPress();
 		}
 	  if(num==6000)
 		{

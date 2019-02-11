@@ -34,16 +34,15 @@ void Bell()
             °´¼üÉ¨Ãèº¯Êý£¬·µ»ØÉ¨Ãè¼üÖµ
 ------------------------------------------------*/
 unsigned char KeyPress(void) {
-	//Bell(); 
-	    if(temp8==0xfe)  { last_key_pressed = 5; return 5; DelayMs(10);}   //Fan   5   1
-			else if(temp8==0xfd)  { last_key_pressed = 4; return 4; DelayMs(10);}   //lamp  4   2
-			else if(temp8==0xfb)	{ last_key_pressed = 6; return 6; DelayMs(10);}   //Pump1 6   3
-			else if(temp8==0xf7)  { last_key_pressed = 7; return 7; DelayMs(10);}   //Pump2 7   4
-			else if(temp8==0xef)  { last_key_pressed = 3; return 3; DelayMs(10);}   //UP    3   5
-			else if(temp8==0xdf)	{ last_key_pressed = 8; return 8; DelayMs(10);}   //EXit  8   6
-			else if(temp8==0xbf)  { last_key_pressed = 1; return 1; DelayMs(10);}   //Set   1   7
-			else if(temp8==0x7f)  { last_key_pressed = 2; return 2; DelayMs(10);}   //Down  2   8
-			else { last_key_pressed = 0; return 0; }
+	    if(temp8==0xfe)  { return 5; DelayMs(10);}   //Fan   5   1
+			else if(temp8==0xfd)  { return 4; DelayMs(10);}   //lamp  4   2
+			else if(temp8==0xfb)	{ return 6; DelayMs(10);}   //Pump1 6   3
+			else if(temp8==0xf7)  { return 7; DelayMs(10);}   //Pump2 7   4
+			else if(temp8==0xef)  { return 3; DelayMs(10);}   //UP    3   5
+			else if(temp8==0xdf)	{ return 8; DelayMs(10);}   //EXit  8   6
+			else if(temp8==0xbf)  { return 1; DelayMs(10);}   //Set   1   7
+			else if(temp8==0x7f)  { return 2; DelayMs(10);}   //Down  2   8
+			else { return 0; }
 }
 
 void load_key() {
@@ -94,7 +93,6 @@ unsigned char KeyScan(void)
           }	
 				  if(key_press_num<200)
 		 		 {
-					   Bell();
 					   last_key_pressed = 10;
 						 return 10;
          } 
