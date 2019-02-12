@@ -261,7 +261,7 @@ void main()
 					ClrScreen();
 				  LCD_flag=1;				
           num=0;
-          //DelayMs(50);				
+          DelayMs(50);				
 				  
 			} else if (last_key_pressed != 0) {
 					Keyprocessing(last_key_pressed); //键值处理
@@ -421,7 +421,6 @@ void main()
 			tempdat();
 			DelayMs(1);
 			AM2320_Init();
-      			
 			//interface_display(Interface);//显示界面
 			
    }
