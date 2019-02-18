@@ -52,7 +52,7 @@ void interface_display(int x)
       switch(x)
 	  {	 //主界面显示
 	     case MainInterface:  
-		          //DelayMs(20);
+		          DelayMs(20);
 		          sprintf(temp,"%02d-%02d-20%02d  ",(int)time_buf1[2],(int)time_buf1[3],(int)time_buf1[1]);//年月日
               LCD_Display_Array(0,0,temp,12);
 	

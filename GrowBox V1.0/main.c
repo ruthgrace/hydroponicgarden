@@ -216,6 +216,7 @@ void main()
 		 Init_ST7920();   //LCD12864初始化  
 	   Read_24C02();
 		 DelayMs(5);
+		 AM2320_Init();
 //新的24C02，需要重新初始化
 		 if(innit!=0x55)
 		 {
@@ -261,7 +262,6 @@ void main()
 					ClrScreen();
 				  LCD_flag=1;				
           num=0;
-          DelayMs(50);				
 				  
 			} else if (last_key_pressed != 0) {
 					Keyprocessing(last_key_pressed); //键值处理
@@ -420,8 +420,7 @@ void main()
 			DelayMs(1);
 			tempdat();
 			DelayMs(1);
-			AM2320_Init();
-			//interface_display(Interface);//显示界面
+			interface_display(Interface);//显示界面
 			
    }
  }
@@ -441,9 +440,6 @@ void Timer0_isr(void) interrupt 1 using 1
 		  last_key_pressed = KeyPress();
 		}
 		if (Power_flag && display_delay >= 2) {
-			//LCD_PutGraphic(pic0);
-			//ClrScreen();
-			interface_display(Interface); //显示界面
 			display_delay = 0;
 		}
 	  if(num>=6000)
