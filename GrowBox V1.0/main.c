@@ -439,6 +439,11 @@ void Timer0_isr(void) interrupt 1 using 1
 			last_key_detected = temp8;
 		  last_key_pressed = KeyPress();
 		}
+		else {
+			if ((temp8 == 0xef || temp8 == 0x7f) && (last_key_pressed == 0)) {
+		    last_key_pressed = KeyPress();
+			}
+		}
 		if (Power_flag && display_delay >= 2) {
 			display_delay = 0;
 		}
