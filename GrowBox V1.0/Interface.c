@@ -137,10 +137,12 @@ void interface_display(int x)
 	                case 1:   LCD_PutString(0,1,"  Start Time    ");
 		                        LCD_PutString(0,2,"       :        ");
 				                    LCD_PutString(0,3,"    --          ");
+		                        LCD_PutString(0,4,"              ");
 		                        break;
 									case 2:   LCD_PutString(0,1,"  Start Time    ");
 														LCD_PutString(0,2,"       :        ");
 														LCD_PutString(0,3,"        --      ");
+		                        LCD_PutString(0,4,"              ");
 														break;
 
 		           }
@@ -183,11 +185,11 @@ void interface_display(int x)
 									//DelayMs(20);
 									switch(flag8)
 	               {
-	                case 1:   LCD_PutString(0,1," Time Setting  ");
-														LCD_PutString(0,2,"      :        ");
-														LCD_PutString(0,3,"    --         ");
+	                case 1:   LCD_PutString(0,1," Time Setting   ");
+														LCD_PutString(0,2,"      :         ");
+														LCD_PutString(0,3,"    --          ");
 														break;
-									case 2:	 LCD_PutString(0,1," Time Setting    ");
+									case 2:	  LCD_PutString(0,1," Time Setting   ");
 														LCD_PutString(0,2,"      :         ");
 														LCD_PutString(0,3,"        --      ");
 														break;
