@@ -21,6 +21,7 @@
 #define  Fan_Mode               9  //风扇工作模式选择界面
 #define  Low_Water              10
 #define  No_Water               11
+#define  Fan_Error              12 // Do not turn off fan if light is on
 
 
 extern unsigned char code num1632[11][64];

@@ -102,7 +102,6 @@ void interface_display(int x)
 								break;
 /**********************************主菜单界面显示********************************/        
 	case  Mainmenu:  
-		//DelayMs(20);
 		LCD_PutString(0,1,"   Main Menu    ");
 		LCD_PutString(0,2,"Date/Time Set ");
 	  LCD_PutString(0,3,"Schedule      ");
@@ -111,7 +110,6 @@ void interface_display(int x)
 		break;
 /****************************时间日期设置选择显示界面*********************************/
 	case  Date_Time_Setting:
-		//DelayMs(20);
 		LCD_PutString(0,1," Date Time Set  ");
 		LCD_PutString(0,2,"Date Setting  ");
 		LCD_PutString(0,3,"Time Setting  ");
@@ -121,7 +119,6 @@ void interface_display(int x)
 								
 /****************************灯泵模式设置选择界面*******************************************/		
 	case  Lamp_Pump_Fan_Setting:
-		//DelayMs(20);
 		LCD_PutString(0,1,"LED Pump Fan Set");
 		LCD_PutString(0,2,"LED  Mode     "); 
 		LCD_PutString(0,3,"Pump Mode     ");
@@ -130,7 +127,6 @@ void interface_display(int x)
 		break;
 /******************************开始时间点设置界面***********************************/
 			case  AlarmSetInterface:  
-		          //DelayMs(20);
 				  
 				         switch(flag5)
 	               {
@@ -156,7 +152,6 @@ void interface_display(int x)
 							 						
 /*******************************进入到日期设置界面**********************************/			 
 		case  DateSetInterface:  
-		              //DelayMs(20);
 				          switch(flag2)
 	               {
 										case 1:   LCD_PutString(0,1,"  Date Setting  ");
@@ -182,7 +177,6 @@ void interface_display(int x)
 										break;
 /**************************************进入到时间设置界面**********************************/
 	   	case  TimeSetInterface:  
-									//DelayMs(20);
 									switch(flag8)
 	               {
 	                case 1:   LCD_PutString(0,1," Time Setting   ");
@@ -206,7 +200,6 @@ void interface_display(int x)
 							 
 /**************************************进入灯模式选择界面**********************************/							 
 	case  Lamp_Mode :
-		//DelayMs(20);
 		LCD_PutString(0,1,"LED Mode Select ");
 		LCD_PutString(0,2,"Mode1   12hr  ");
 		LCD_PutString(0,3,"Mode2   18hr  ");
@@ -215,7 +208,6 @@ void interface_display(int x)
 		break;
 /************************************进入泵模式选择界面************************************/
 	case  Pump_Mode:
-		//DelayMs(20);
 		LCD_PutString(0,1,"Pump Mode Select");
 		LCD_PutString(0,2,"Mode1   1X    ");
 		LCD_PutString(0,3,"Mode2   2X    ");
@@ -226,13 +218,19 @@ void interface_display(int x)
 /************************************进入风扇模式选择界面************************************/
 							 
 	case  Fan_Mode :
-		//DelayMs(20);
 		LCD_PutString(0,1,"Fan Mode Select ");
 		LCD_PutString(0,2,"High          ");
 		LCD_PutString(0,3,"Medium        ");
 		LCD_PutString(0,4,"Low           ");
 		move_selection(flag7);
-		break;			 
+		break;			
+
+	case  Fan_Error :
+	  LCD_PutString(0,1,"     ERROR!     ");
+		LCD_PutString(0,2,"Cannot turn off ");
+		LCD_PutString(0,3,"cooling fan when");
+		LCD_PutString(0,4,"LED is on.      ");
+		break;
 								
 
 	  }

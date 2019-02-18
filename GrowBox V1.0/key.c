@@ -153,6 +153,9 @@ void Keyprocessing(int x)   //按键值处理函数
 	    case 1:  if(Interface==MainInterface)
 		           {
 									Interface=Mainmenu;
+							 } else if(Interface==Fan_Error)
+		           {
+									Interface=MainInterface;
 							 }
 						 
 								else if(Interface==Mainmenu)
@@ -302,6 +305,9 @@ void Keyprocessing(int x)   //按键值处理函数
 		 case 2:
 			 switch(Interface)
 			 {
+				 case Fan_Error:
+					 Interface=MainInterface;
+				   break;
 				 case DateSetInterface:
 					 switch(flag2)
 					 {
@@ -381,6 +387,9 @@ void Keyprocessing(int x)   //按键值处理函数
 		case 3: 
 			switch(Interface)
 			{
+				case Fan_Error:
+					Interface=MainInterface;
+				  break;
 				case DateSetInterface:
 					 switch(flag2)
 					 {
@@ -483,7 +492,20 @@ void Keyprocessing(int x)   //按键值处理函数
 				}
 				break;
 				
-		  case 5:   Fan_flag=~Fan_flag;      break;
+		  case 5:
+				// allow fan to be toggled if LED is off
+				if (Lamp_flag1 == 0) {
+					if (Fan_flag == 0) {
+						Fan_flag = 1;
+					} else {
+						Fan_flag = 0;
+					}
+				// cooling fan cannot be turned off when LED is on
+				} else {
+					Interface=Fan_Error;
+				}
+					
+			  break;
 		
 		  case 6:
 				if (Pump1_flag == 0) {
@@ -495,7 +517,7 @@ void Keyprocessing(int x)   //按键值处理函数
 				
 		  case 7:   Pump2_flag=~Pump2_flag;  break;
 								 			 
-    	case 8:    if(Interface==Mainmenu||Date_Time_Setting||Lamp_Pump_Fan_Setting||DateSetInterface||TimeSetInterface||AlarmSetInterface||Lamp_Mode||Pump_Mode)
+    	case 8:    if(Interface==Mainmenu||Date_Time_Setting||Lamp_Pump_Fan_Setting||DateSetInterface||TimeSetInterface||AlarmSetInterface||Lamp_Mode||Pump_Mode||Fan_Error)
 			           {
 									  if(Interface==AlarmSetInterface)
 										{

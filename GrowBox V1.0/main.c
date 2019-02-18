@@ -336,6 +336,9 @@ void main()
 			{
 				 Fan_Ctrl=1;
 				 TR1=0;
+				 if (Lamp_flag1 == 1) {
+					 Fan_flag = 1;
+				 }
 			}
 			
 			if(!Water_Low)        //µÍË®Î»¼ì²â
