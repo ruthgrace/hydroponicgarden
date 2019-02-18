@@ -216,7 +216,6 @@ void main()
 		 Init_ST7920();   //LCD12864初始化  
 	   Read_24C02();
 		 DelayMs(5);
-		 AM2320_Init();
 //新的24C02，需要重新初始化
 		 if(innit!=0x55)
 		 {
@@ -252,7 +251,7 @@ void main()
    while(Power_flag)
    { 	
 		 	Power_C=1; 
-	   	Pump3_flag=1;	
+	   	Pump3_flag=1;
 		      	 
       KeyValue=KeyScan();
 			if(KeyValue!=0)    //如果有键按下
@@ -419,10 +418,10 @@ void main()
 				Pump3_Ctrl=0;
       }
 			else Pump3_Ctrl=1;
-			
-			DelayMs(1);
-			tempdat();
-			DelayMs(1);
+		  DelayMs(1);
+		  tempdat();
+		  DelayMs(1);
+		  AM2320_Init();
 			interface_display(Interface);//显示界面
 			
    }
