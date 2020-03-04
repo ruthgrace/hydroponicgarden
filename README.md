@@ -1,5 +1,5 @@
-# growbox
-firmware for Aspen Growbox
+# hydroponic garden
+firmware for hydroponic garden that never went into production
 
 ## Development setup
 You will need to set up your IDE, code downloading tool, and hardware.
@@ -16,7 +16,7 @@ Follow the first 90 seconds of this video to figure out how to add the STC micro
 
 Make sure the STC-ISP settings look like this:
 
-![STC-ISP software settings](https://github.com/ruthgrace/growbox/blob/master/stc-isp-settings.PNG)
+![STC-ISP software settings](https://github.com/ruthgrace/hydroponicgarden/blob/master/stc-isp-settings.PNG)
 
 ### Development workflow
 
@@ -32,7 +32,7 @@ The hardware should start buzzing. Press the power button for 1 second (until it
 
 ### Hardware
 
-The hardware I have has 2 PCBs, one is for the top of the Growbox and includes the LCD display, buttons, and a big black relay hanging off some wires that represent the LEDs. There is a long thick cord connecting that to a second PCB for the bottom of the Growbox, which has the float switches and lights which represent the pumps (they turn on when the firmware tells the pump to turn on). There is also a power supply.
+The hardware I have has 2 PCBs, one is for the top of the hydroponic garden and includes the LCD display, buttons, and a big black relay hanging off some wires that represent the LEDs. There is a long thick cord connecting that to a second PCB for the bottom of the garden, which has the float switches and lights which represent the pumps (they turn on when the firmware tells the pump to turn on). There is also a power supply.
 
 The LCD powers on or off if you press the power button for 3 seconds.
 
